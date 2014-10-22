@@ -4,6 +4,6 @@
 /*
 * 主页面
 * */
-todo.controller('main', ['$scope', function ($scope) {
-
+todo.controller('main', ['$scope', 'weekModel', function ($scope, weekModel) {
+    console.log(weekModel);
 }]);

@@ -1,5 +1,6 @@
-todo.controller('weekCycleCtrl', ['$scope',
-    function ($scope) {
+todo.controller('weekCycleCtrl', ['$scope', 'dayModel',
+    function ($scope, dayModel) {
+        console.log(dayModel)
         function weekFactory(day) {
             var day = day || new Date();
             var week = [];
