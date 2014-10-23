@@ -3,6 +3,7 @@
  */
 todo.filter('i8n', function () {
     return function(input) {
+        input = new Date(input);
         switch (input.getDay()) {
             case 1:
                 return '周一';

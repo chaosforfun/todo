@@ -12,12 +12,15 @@ todo.service('weekModel', ['$q', '$filter', 'dayModel',
         *
         * @return {week}
         * */
-        this.init = function init(day) {
+        this.init = function (day) {
             var day = day || new Date();
             var oneDay = 1000 * 3600 * 24;
             var monday = new Date(day.getTime() - oneDay*(day.getDay() - 1));
             var id = dateFilter(monday, 'yyyy-MM-dd');
             var defer = $q.defer();
+            var week = {
+                id: id
+            };
 
             localforage.keys(function(err, keys) {
                 if (err) {
@@ -26,31 +29,34 @@ todo.service('weekModel', ['$q', '$filter', 'dayModel',
                 var i = keys.indexOf(id);
                 if (i > -1) {
                     localforage.getItem(keys[i])
-                        .then(function(week) {
+                        .then(function(days) {
+                            week.days = days;
                             defer.resolve(week);
                         })
                 } else {
-                    defer.resolve(weekFactory(day));
+                    week.days = weekFactory(day);
+                    defer.resolve(week);
                 }
             });
-            var week = {};
-
-            return week;
+            return defer.promise;
         };
 
+
         function weekFactory(day) {
-            var day = day || new Date();
             var week = [];
             var i = 1,
                 l = day.getDay();
             var oneDay = 1000 * 3600 * 24;
+            var tmp;
             //构建day 之前的日期
             for (; i <= l; i++) {
-                week.push(new Date(day.getTime() - oneDay * (l - i)));
+                tmp = dayModel.init(dateFilter(new Date(day.getTime() - oneDay * (l - i)), 'yyyy-MM-dd'));
+                week.push(tmp);
             }
             //构建day之后的日期
             while (week.length !== 7) {
-                week.push(new Date(day.getTime() + oneDay * (week.length - l + 1)));
+                tmp = dayModel.init(dateFilter(new Date(day.getTime() + oneDay * (week.length - l + 1))), 'yyyy-MM-dd');
+                week.push(tmp);
             }
             return week;
         }

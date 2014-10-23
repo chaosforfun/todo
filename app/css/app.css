@@ -1,0 +1,19 @@
+html, body, .week {
+    height: 100%;
+}
+.day {
+    height: 10%;
+}
+.day-theme {
+    border-top: 1px solid #f2f2f2;
+}
+.day:first-child {
+    border-top: none;
+}
+.day input {
+    display: none;
+}
+
+.day.active {
+    height: 40%;
+}

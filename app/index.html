@@ -28,8 +28,14 @@
 </head>
 <body ng-controller="main">
 	<div class="week" ng-controller="weekCycleCtrl">
-		<div class="day" ng-repeat="day in week" ng-class="">
-            {{day | i8n}}
+		<div class="day day-theme" ng-repeat="day in week.days" ng-class="{active:day.state}">
+            <span>{{day.id | i8n}}</span>
+            <input type="text"/>
+            <ul>
+                <li ng-repeat="item in day.todoList">
+                    {{item.text}}
+                </li>
+            </ul>
 		</div>
 	</div>
 </body>
