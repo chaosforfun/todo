@@ -1,6 +1,15 @@
 html, body, .week {
     height: 100%;
 }
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: inline-block;
+    list-style-type: none;
+}
+/**********************************************************/
 .day {
     height: 10%;
 }
@@ -16,4 +25,27 @@ html, body, .week {
 
 .day.active {
     height: 40%;
+}
+/***********************************************************/
+.active .dayTitle {
+    display: block;
+    height: 25%;
+}
+/***********************************************************/
+.todoList {
+    display: inline-block;
+}
+
+.item:after {
+    content: ',';
+}
+.item:last-child:after {
+    content: '';
+}
+
+.day.active .item {
+    display: block;
+}
+.day.active .item:after {
+    display: none;
 }

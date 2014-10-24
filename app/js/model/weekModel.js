@@ -1,8 +1,8 @@
 /**
  * Created by zhaoshichao on 14-10-22.
  */
-todo.service('weekModel', ['$q', '$filter', 'dayModel',
-    function ($q, $filter, dayModel) {
+todo.service('weekModel', ['$q', '$filter', 'dayModel', 'config',
+    function ($q, $filter, dayModel, config) {
         this.week = [];
         var dateFilter = $filter('date');
         /*
@@ -16,7 +16,7 @@ todo.service('weekModel', ['$q', '$filter', 'dayModel',
             var day = day || new Date();
             var oneDay = 1000 * 3600 * 24;
             var monday = new Date(day.getTime() - oneDay*(day.getDay() - 1));
-            var id = dateFilter(monday, 'yyyy-MM-dd');
+            var id = dateFilter(monday, config.dateFormate);
             var defer = $q.defer();
             var week = {
                 id: id
@@ -50,12 +50,12 @@ todo.service('weekModel', ['$q', '$filter', 'dayModel',
             var tmp;
             //构建day 之前的日期
             for (; i <= l; i++) {
-                tmp = dayModel.init(dateFilter(new Date(day.getTime() - oneDay * (l - i)), 'yyyy-MM-dd'));
+                tmp = dayModel.init(dateFilter(new Date(day.getTime() - oneDay * (l - i)), config.dateFormate));
                 week.push(tmp);
             }
             //构建day之后的日期
             while (week.length !== 7) {
-                tmp = dayModel.init(dateFilter(new Date(day.getTime() + oneDay * (week.length - l + 1))), 'yyyy-MM-dd');
+                tmp = dayModel.init(dateFilter(new Date(day.getTime() + oneDay * (week.length - l + 1))), config.dateFormate);
                 week.push(tmp);
             }
             return week;

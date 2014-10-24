@@ -9,6 +9,7 @@
 
     <!--lib-->
     <script src="lib/angular-1.3.0/angular.js"></script>
+    <script src="lib/angular-1.3.0/angular-touch.js"></script>
     <script src="lib/angular-1.3.0/angular-animate.js"></script>
 
     <script src="lib/localForage.1.1.js"></script>
@@ -25,15 +26,18 @@
 
     <!--filter-->
     <script src="js/filter/filter.js"></script>
+
+    <!--config-->
+    <script src="js/config.js"></script>
 </head>
 <body ng-controller="main">
 	<div class="week" ng-controller="weekCycleCtrl">
-		<div class="day day-theme" ng-repeat="day in week.days" ng-class="{active:day.state}">
-            <span>{{day.id | i8n}}</span>
+		<div ng-click="changeState(day)" class="day day-theme" ng-repeat="day in week.days" ng-class="{active:day.state}">
+            <span class="dayTitle">{{day.id | i8n}}</span>
             <input type="text"/>
-            <ul>
-                <li ng-repeat="item in day.todoList">
-                    {{item.text}}
+            <ul class="todoList">
+                <li class="item" ng-repeat="item in day.todoList">
+                    {{item}}
                 </li>
             </ul>
 		</div>

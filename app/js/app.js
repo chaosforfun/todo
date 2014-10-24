@@ -4,4 +4,4 @@
 /*
 * 程序入口
 * */
-var todo = angular.module('todo', []);
+var todo = angular.module('todo', ['ngAnimate']);
