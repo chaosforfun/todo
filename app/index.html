@@ -2,7 +2,8 @@
 <html ng-app="todo">
 <head lang="zh">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no"/>
     <title>todo</title>
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/app.css"/>
@@ -31,16 +32,20 @@
     <script src="js/config.js"></script>
 </head>
 <body ng-controller="main">
-	<div class="week" ng-controller="weekCycleCtrl">
-		<div ng-click="changeState(day)" class="day day-theme" ng-repeat="day in week.days" ng-class="{active:day.state}">
-            <span class="dayTitle">{{day.id | i8n}}</span>
+<div class="week" ng-controller="weekCycleCtrl">
+    <div ng-click="changeState(day)" class="day day-theme"
+         ng-repeat="day in week.days" ng-class="{active:day.state}">
+        <div class="dayTitle fs1">
+            <span class="today">{{day.id | i8n}}</span>
             <input type="text"/>
-            <ul class="todoList">
-                <li class="item" ng-repeat="item in day.todoList">
-                    {{item}}
-                </li>
-            </ul>
-		</div>
-	</div>
+            <span ng-if="day.state" class="add">add</span>
+        </div>
+        <ul class="todoList fs1">
+            <li class="item" ng-repeat="item in day.todoList track by $index">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

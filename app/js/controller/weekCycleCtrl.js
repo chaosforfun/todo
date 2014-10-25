@@ -17,7 +17,7 @@ todo.controller('weekCycleCtrl', ['$scope', 'weekModel',
             days: [{
                     id: '2014-10-20',
                     state: 0,
-                    todoList:['锻炼', '看书', 'download']
+                    todoList:['锻炼', '看书', 'download', '看书', 'download']
                 },{
                     id: '2014-10-21',
                     state: 0,
