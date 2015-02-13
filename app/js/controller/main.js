@@ -4,7 +4,7 @@
 /*
  * 主页面
  * */
-todo.controller('main', ['$scope', 'weekModel',
+todo.controller('main', ['$scope', 'WeekModel',
     function ($scope) {
 
     }]);
