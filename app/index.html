@@ -41,9 +41,9 @@
          ng-repeat="day in week.days" ng-class="{active:day.state}">
         <div class="dayTitle fs1">
             <span class="today">{{day.id | i8n}}</span>
-            <input ng-show="day.adding" type="text"/>
+            <input ng-show="day.adding" ng-model="newItem.value" type="text"/>
             <span ng-if="day.state" class="btn add" ng-click="showAdd(day, $event)">add</span>
-            <span ng-if="day.state" class="btn save" ng-click="saveItem(day, $event)">save</span>
+            <span ng-if="day.state" class="btn success" ng-click="saveItem(day, $event)">save</span>
         </div>
         <ul class="todoList fs1">
             <li class="item" ng-repeat="item in day.todoList track by $index">

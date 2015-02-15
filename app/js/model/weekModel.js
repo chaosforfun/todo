@@ -15,7 +15,7 @@ todo.factory('WeekModel', ['$q', '$filter', 'DayModel', 'config',
          * */
         function WeekModel(day) {
             var day = day || new Date();
-            var monday = new Date(day.getTime() - oneDay * (day.getDay() - 1));
+            var monday = new Date(day.getTime() - oneDay * (day.getDay() || 7 - 1));
 
             this.id = dateFilter(monday, config.dateFormat);
             var defer = $q.defer();
@@ -31,6 +31,14 @@ todo.factory('WeekModel', ['$q', '$filter', 'DayModel', 'config',
 
             defer.promise.then(function () {
                 console.log('OK');
+            })
+        };
+
+        WeekModel.prototype.save = function () {
+            var self = this;
+            localforage.setItem(this.id, this.days, function () {
+                console.log('saved');
+                console.log(self.id)
             })
         };
 
@@ -158,20 +166,21 @@ todo.factory('WeekModel', ['$q', '$filter', 'DayModel', 'config',
                 })
             } else {
                 var newDays = [];
+                var today = new Date;
                 var i = 1,
-                    l = day.getDay();
+                    l = today.getDay() || 7;
                 var tmp,
                     thisDay;
                 //构建day 之前的日期
                 for (; i <= l; i++) {
-                    thisDay = new Date(day.getTime() - oneDay * (l - i));
-                    tmp = new DayModel(dateFilter(thisDay, config.dateFormate));
+                    thisDay = new Date(today.getTime() - oneDay * (l - i));
+                    tmp = new DayModel(dateFilter(thisDay, config.dateFormat));
                     newDays.push(tmp);
                 }
                 //构建day之后的日期
                 while (newDays.length !== 7) {
-                    thisDay = new Date(day.getTime() + oneDay * (newDays.length - l + 1));
-                    tmp = new DayModel(dateFilter(thisDay, config.dateFormate));
+                    thisDay = new Date(today.getTime() + oneDay * (newDays.length - l + 1));
+                    tmp = new DayModel(dateFilter(thisDay, config.dateFormat));
                     newDays.push(tmp);
                 }
                 return newDays;

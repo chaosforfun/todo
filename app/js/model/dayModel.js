@@ -14,8 +14,8 @@ todo.factory('DayModel', ['$filter', 'CONST', 'ItemModel', 'config',
             this.id = date;
             this.state = CONST.dayStatus.normal;
             this.todoList = [];
-            if ($filter('date')(new Date, config.dateFormate) == date) {
-                state = CONST.dayStatus.activated;
+            if ($filter('date')(new Date, config.dateFormat) == date) {
+                this.state = CONST.dayStatus.activated;
             }
 
             var self = this;
@@ -29,14 +29,14 @@ todo.factory('DayModel', ['$filter', 'CONST', 'ItemModel', 'config',
          * @param content {String} 内容
          * return this*/
         DayModel.prototype.addItem = function (content) {
-            todoList.push(new ItemModel(content));
+            this.todoList.push(new ItemModel(content));
             return this;
         };
 
         /*删除事项
          * @param index {Number}*/
         DayModel.prototype.removeItem = function (index) {
-            todoList.splice(index, 1);
+            this.todoList.splice(index, 1);
         };
 
         return DayModel

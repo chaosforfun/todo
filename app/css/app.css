@@ -65,6 +65,9 @@ li {
     white-space: nowrap;
     vertical-align: middle;
 }
+.active .todoList {
+    width: 100%
+}
 
 .item:after {
     content: ',';
@@ -75,6 +78,8 @@ li {
 
 .day.active .item {
     display: block;
+    line-height: 45px;
+    border-bottom: 1px solid #C2D127;
 }
 .day.active .item:after {
     display: none;
@@ -87,3 +92,67 @@ li {
     -o-transition: 500ms ease-in all;
     transition: 500ms ease-in all;
 }
+
+/*********************************************************/
+/*icon
+copy from http://nicolasgallagher.com/pure-css-gui-icons/demo/
+*/
+
+.add a:before {
+    width:16px;
+    height:16px;
+    /* css3 */
+    -webkit-border-radius:16px;
+    -moz-border-radius:16px;
+    border-radius:16px;
+}
+
+.add a:after {
+    left:3px;
+    width:10px;
+    height:2px;
+    margin-top:-1px;
+    background:#fff;
+}
+
+.add:before {
+    z-index:10;
+    left:7px;
+    width:2px;
+    height:10px;
+    margin-top:-5px;
+    background:#fff;
+}
+
+
+.success {
+    color:#7F913C;
+}
+
+.success:before {
+    left:3px;
+    width:16px;
+    height:16px;
+    margin-top:-8px;
+    /* css3 */
+    -webkit-border-radius:16px;
+    -moz-border-radius:16px;
+    border-radius:16px;
+    background:#7F913C;
+}
+
+.success:after {
+    left:8px;
+    width:3px;
+    height:8px;
+    border-width:0 2px 2px 0;
+    border-style:solid;
+    border-color:#fff;
+    margin-top:-6px;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+
