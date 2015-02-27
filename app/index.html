@@ -42,13 +42,19 @@
         <div class="dayTitle fs1">
             <span class="today">{{day.id | i8n}}</span>
             <div class="addItem">
-                <input ng-show="day.adding" ng-model="newItem.value" type="text"/>
-                <span ng-if="day.state" class="btn add" ng-click="showAdd(day, $event)"><img src="img/plus.svg" alt="添加"/></span>
-                <span ng-if="day.state" class="btn success" ng-click="saveItem(day, $event)"><img src="img/checkmark.svg" alt="保存"/></span>
+                <span class="input">
+                    <input ng-model="newItem.value" type="text"/>
+                </span>
+                <span class="btns">
+                    <span ng-if="day.state" class="btn success" ng-click="saveItem(day, $event)">
+                        <img src="img/checkmark.svg" alt="添加"/>
+                    </span>
+                </span>
             </div>
         </div>
         <ul class="todoList fs1">
-            <li class="item" ng-repeat="item in day.todoList track by $index">
+            <li class="item" ng-repeat="item in day.todoList track by $index" ng-class="item.status"
+                ng-swipe-left="doneItem(item)" ng-swipe-right="unDoneItem(item)">
                 {{item.content}}
             </li>
         </ul>

@@ -12,13 +12,7 @@ todo.controller('weekCycleCtrl', ['$scope', 'WeekModel', 'CONST',
             theDay.state = CONST.dayStatus.activated;
 
             //reset
-            $scope.newItem.value = '';
-        };
-
-        $scope.showAdd = function(day, e) {
-            e.stopPropagation();
-            day.adding = true;
-            console.log(day);
+//            $scope.newItem.value = '';
         };
 
         $scope.saveItem = function (day,e) {
@@ -32,6 +26,16 @@ todo.controller('weekCycleCtrl', ['$scope', 'WeekModel', 'CONST',
             } else {
                 //todo: tip for no item
             }
+        };
+
+        $scope.doneItem = function (item) {
+            console.log('done')
+            item.done()
+        };
+
+        $scope.unDoneItem = function (item) {
+            console.log('undone')
+            item.undone()
         };
 
         $scope.week = new WeekModel();

@@ -12,6 +12,15 @@ li {
 .fs1 {
     font-size: 1rem;
 }
+
+.absCenter {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 /**********************************************************/
 .day {
     position: relative;
@@ -51,22 +60,68 @@ li {
     position: relative;
     width: 100%;
     height: 25%;
+    border-bottom: 1px solid #f2f2f2;
 }
 .active .today {
     right: 80%;
+}
+.addItem {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 20%;
+}
+.input {
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    top: 5px;
+    right: 55px;
+}
+.day .input {
+    display: none;
+}
+.day.active .input {
+    display: inline-block;
+}
+input {
+    border: 1px solid #bdb76b;
+    line-height: 32px;
+    border-radius: 5px;
+    vertical-align: middle;
+    outline: 0;
+
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.btns {
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    right: 5px;
 }
 /***********************************************************/
 .todoList {
     display: inline-block;
     width: 80%;
     height: 110%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: middle;
 }
 .active .todoList {
-    width: 100%
+    width: 100%;
+    height: 75%;
 }
 
 .item:after {
@@ -76,10 +131,21 @@ li {
     content: '';
 }
 
+.item.done {
+    display: none;
+}
+
 .day.active .item {
     display: block;
     line-height: 45px;
     border-bottom: 1px solid #C2D127;
+    padding-left: 5%;
+}
+.day.active .item.done {
+    display: block;
+    text-decoration: line-through;
+    color: #BDB0B0;
+    background-color: #F7F4F4;
 }
 .day.active .item:after {
     display: none;
@@ -104,4 +170,5 @@ li {
 }
 .btn img {
     vertical-align: middle;
+    opacity: 0.6;
 }
